@@ -6,11 +6,26 @@ public class Driver : MonoBehaviour
 {
 
     [SerializeField] float steerSpeed = 0.5f;
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float slowSpeed = 15f;
+    [SerializeField] float fastSpeed = 30f;
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        moveSpeed = slowSpeed;
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "SpeedUp")
+        {
+            moveSpeed = fastSpeed;
+            Debug.Log("Speed Up");
+        }
     }
 
     // Update is called once per frame
